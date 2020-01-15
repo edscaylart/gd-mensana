@@ -1,0 +1,9 @@
+{
+  "bestiary": [
+    {
+      "name": "Einger",
+      "description": "Anger or wrath is an intense expression of emotion. It involves a strong uncomfortable and hostile response to a perceived provocation, hurt or threat.[1] Anger can occur when a person feels their personal boundaries are being or are about to be violated. Some have a learned tendency to react to anger through retaliation as a way of coping. Raymond Novaco of University of California Irvine, who since 1975 has published a plethora of literature on the subject, stratified anger into three modalities: cognitive (appraisals), somatic-affective (tension and agitations), and behavioral (withdrawal and antagonism). William DeFoore, an anger management writer, described anger as a pressure cooker: we can only apply pressure against our anger for a certain amount of time until it explodes.",
+      "path": "res://entities/enemies/Einger.tscn"
+    }
+  ]
+}

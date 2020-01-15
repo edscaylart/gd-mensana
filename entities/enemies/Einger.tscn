@@ -1,0 +1,128 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scripts/enemy.gd" type="Script" id=1]
+[ext_resource path="res://assets/Einger.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 17.2873, 8.43995 )
+
+[sub_resource type="Animation" id=2]
+
+resource_name = "Death"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 6, 9, 1, 4, 7, 10, 2, 5, 8, 11 ]
+}
+
+[sub_resource type="Animation" id=3]
+
+length = 1.0
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 3, 3 ]
+}
+
+[node name="Einger" type="Node2D" index="0"]
+
+script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
+speed = 5
+damage = 1
+
+[node name="Area2D" type="Area2D" parent="." index="0"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+
+position = Vector2( 0.918793, 3.26752 )
+scale = Vector2( 0.955024, 1.21583 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="Area2D" index="1"]
+
+scale = Vector2( 5, 5 )
+texture = ExtResource( 2 )
+vframes = 4
+hframes = 3
+region_rect = Rect2( 0.625, 1, 14.5, 14.625 )
+_sections_unfolded = [ "Animation", "Material", "Offset", "Transform" ]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Area2D/Sprite" index="0"]
+
+root_node = NodePath("..")
+autoplay = "Idle"
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/Death = SubResource( 2 )
+anims/Idle = SubResource( 3 )
+blend_times = [  ]
+
+[node name="Control" type="Control" parent="." index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -58.0
+margin_top = -50.0
+margin_right = 62.0
+margin_bottom = 58.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="Control" index="0"]
+
+scale = Vector2( 121.29, 106.588 )
+normal = null
+pressed = null
+bitmask = null
+shape = null
+shape_centered = true
+shape_visible = true
+passby_press = false
+action = "touch"
+visibility_mode = 0
+_sections_unfolded = [ "Transform" ]
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+
+[connection signal="animation_finished" from="Area2D/Sprite/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+
+[connection signal="gui_input" from="Control" to="." method="_on_Control_gui_input"]
+
+

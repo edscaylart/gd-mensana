@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scripts/StartMenu.gd" type="Script" id=1]
+[ext_resource path="res://assets/HUD/start.png" type="Texture" id=2]
+[ext_resource path="res://assets/HUD/quit.png" type="Texture" id=3]
+[ext_resource path="res://assets/HUD/bestiary-btn01.png" type="Texture" id=4]
+[ext_resource path="res://assets/HUD/bestiary-btn02.png" type="Texture" id=5]
+[ext_resource path="res://assets/HUD/title.png" type="Texture" id=6]
+
+[node name="StartMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="Hud" type="CanvasLayer" parent="."]
+
+[node name="Touchpad" type="Node2D" parent="Hud"]
+
+[node name="StartGameTouch" type="TouchScreenButton" parent="Hud/Touchpad"]
+position = Vector2( 475, 377 )
+scale = Vector2( 8, 8 )
+normal = ExtResource( 2 )
+
+[node name="QuitGameTouch" type="TouchScreenButton" parent="Hud/Touchpad"]
+position = Vector2( 477, 520 )
+scale = Vector2( 8, 8 )
+normal = ExtResource( 3 )
+
+[node name="BestiaryTouch" type="TouchScreenButton" parent="Hud/Touchpad"]
+position = Vector2( 18.5452, 571.812 )
+scale = Vector2( 8, 8 )
+normal = ExtResource( 4 )
+pressed = ExtResource( 5 )
+
+[node name="Title" type="Sprite" parent="Hud"]
+position = Vector2( 666, 225 )
+scale = Vector2( 12, 12 )
+texture = ExtResource( 6 )
+[connection signal="pressed" from="Hud/Touchpad/StartGameTouch" to="." method="_on_StartGameTouch_pressed"]
+[connection signal="pressed" from="Hud/Touchpad/QuitGameTouch" to="." method="_on_QuitGameTouch_pressed"]
+[connection signal="pressed" from="Hud/Touchpad/BestiaryTouch" to="." method="_on_BestiaryTouch_pressed"]
